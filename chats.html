@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liveseygram</title>
+    <script src="https://cdn.jsdelivr.net/npm/@stomp/stompjs@5.0.0/bundles/stomp.umd.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.5.0/sockjs.min.js"></script>
+    <script src="scripts/checkAuth.js"></script>
+    <script type="module" src="scripts/app.js"></script>
+    <script src="scripts/loadChats.js"></script>
+    <script src="scripts/changeMessageStatusToREAD.js"></script>
+    <script src="scripts/checkTimeout.js"></script>
+    <script src="scripts/exit.js"></script>
+
+    <link rel="stylesheet" href="styles/styles.css">
+    <script src="scripts/modal.js"></script>
+</head>
+<body>
+<div class="header">
+    Liveseygram
+</div>
+
+<div class="chats-chatArea-container">
+    <div class="chat-settings-area">
+        <div class="search-user-field">
+            <textarea class="search-input" placeholder="Поиск"></textarea>
+        </div>
+        <div class="chat-container" id="chat-container">
+            <div class="chat">
+                <div class="avatar">
+                </div>
+                <div class="participant-text">
+                    <div class="participant">Избранное</div>
+                    <div class="lastMessage"></div>
+                </div>
+                <div class="unreadPoint" style="display: none;"></div>
+            </div>
+        </div>
+        <button id="settingsButton">⚙️</button>
+    </div>
+
+    <div class="chatArea-container">
+        <div class="start-dialog">
+            Выберите собеседника, которому хотели бы написать
+        </div>
+
+        <div class="chatArea">
+            <div class="fullname-chat" style="display: none"></div>
+
+            <div class="messages-container"></div>
+            <label for="messageInput"></label><textarea id="messageInput" class="transparent-input"
+                                                        placeholder="Печатайте тут" style="display: none"></textarea>
+            <button id="sendButton" style="display: none">Отправить</button>
+        </div>
+    </div>
+</div>
+<div id="myModal" class="modal">
+    Настройки
+    <div class="avatarSettings">
+        <label class="settingsLabel" id="avatarLabel" for="myAvatar">Аватар:</label>
+        <div id="myAvatar" class="settingsAvatar"></div>
+        <input type="file" id="avatar-image" name="avatar-image" accept="image/*" style="display: none" required >
+        <button class="editButton" id="editAvatarButton">✏️</button>
+        <button class="cancelEditButton" id="cancelEditAvatarButton" style="display: none">❌</button>
+        <button class="acceptEditButton" id="acceptEditAvatarButton" style="display: none">✅</button>
+    </div>
+
+    <div class="firstNameSettings">
+        <label class="settingsLabel" id="firstNameLabel" for="firstName">Фамилия:</label>
+        <div id="firstName" class="firstName">Петров</div>
+        <input type="text" id="editFirstName" class="editInput" maxlength="64" style="display: none" required>
+        <button class="editButton" id="editFirstNameButton">✏️</button>
+        <button class="cancelEditButton" id="cancelEditFirstNameButton" style="display: none">❌</button>
+        <button class="acceptEditButton" id="acceptEditFirstNameButton" style="display: none">✅</button>
+    </div>
+
+    <div class="lastNameSettings">
+        <label class="settingsLabel" id="lastNameLabel" for="lastName">Имя:</label>
+        <div id="lastName" class="lastName">Петя</div>
+        <input type="text" id="editLastName" class="editInput" maxlength="64" style="display: none" required>
+        <button class="editButton" id="editLastNameButton">✏️</button>
+        <button class="cancelEditButton" id="cancelEditLastNameButton" style="display: none">❌</button>
+        <button class="acceptEditButton" id="acceptEditLastNameButton" style="display: none">✅</button>
+    </div>
+
+    <div class="userNameSettings">
+        <label class="settingsLabel" id="userNameLabel" for="userName">Имя пользователя:</label>
+        <div id="userName" class="userName">Petya</div>
+        <input type="text" id="editUserName" class="editInput" maxlength="64" style="display: none" required>
+        <button class="editButton" id="editUserNameButton">✏️</button>
+        <button class="cancelEditButton" id="cancelEditUserNameButton" style="display: none">❌</button>
+        <button class="acceptEditButton" id="acceptEditUserNameButton" style="display: none">✅</button>
+    </div>
+
+    <div class="passwordSettings">
+        <label class="settingsLabel" id="passwordLabel" for="password">Пароль:</label>
+        <div id="password" class="password">********</div>
+        <input type="text" id="editPassword" class="editInput" maxlength="64" style="display: none" required>
+        <button class="editButton" id="editPasswordButton">✏️</button>
+        <button class="cancelEditButton" id="cancelEditPasswordButton" style="display: none">❌</button>
+        <button class="acceptEditButton" id="acceptEditPasswordButton" style="display: none">✅</button>
+    </div>
+
+    <button id="closeModalBtn">❌</button>
+    <button id="exitBtn" onclick="exit()">Выйти</button>
+</div>
+</body>
+</html>

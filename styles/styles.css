@@ -1,0 +1,284 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    /*padding: 10px;*/
+    font-family: Arial, sans-serif;
+    background-color: #13232c;
+}
+
+.header {
+    position: page;
+    text-align: center;
+    background-color: #2294d5;
+    padding: 5px;
+}
+
+.chats-chatArea-container {
+    display: flex;
+    height: 96%;
+    justify-content: space-around;
+}
+
+.chat-settings-area {
+    flex: 1;
+    max-width: 34%;
+    height: 90vh; /* Задайте желаемую высоту контейнера сообщений */
+    overflow: auto;
+}
+
+.messages-container {
+    height: 84vh; /* Задайте желаемую высоту контейнера сообщений */
+    overflow: auto; /* Добавьте прокрутку, если сообщения не помещаются */
+}
+
+.chatArea-container {
+    flex: 2;
+    max-width: 66%;
+    background-color: #1c1321;
+    padding-right: 0;
+    border-left: 2px solid #131313;
+}
+
+.chat {
+    display: flex;
+    align-items: center;
+    background-color: transparent;
+    padding: 20px;
+    position: relative;
+    left: 0;
+    transition: background-color 0.1s ease;
+}
+
+.chat:hover {
+    background-color: #3d5c64;
+}
+
+.participant {
+    color: #d8dedd;
+    font-weight: bold;
+    position: relative;
+    top: -10px;
+}
+
+.lastMessage {
+    position: relative;
+    top: 10px;
+    bottom: 0;
+    color: #939494;
+    max-width: 22vw;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.transparent-input {
+    width: 59.5%;
+    position: fixed;
+    bottom: 0;
+    padding: 10px;
+    /*border: 1px solid #ccc;*/
+    border: none;
+    background-color: #573c67;
+    color: white;
+    outline: none;
+    resize: none;
+    height: 25px;
+}
+
+.transparent-input::placeholder {
+    color: white;
+    font-style: italic;
+}
+
+#sendButton {
+    width: 75px;
+    height: 45px;
+    position: fixed;
+    bottom: 0;
+    right: 5px;
+    /*background-color: transparent;*/
+    align-items: initial;
+    background-color: #ffffff;
+    /*border: 1px solid #ccc;*/
+    border: none;
+    /*padding: 10px;*/
+}
+
+.unreadPoint {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #007bff;
+    color: white;
+    position: absolute;
+    right: 5%;
+    /*transform: translateX(-10px);*/
+    text-align: center;
+    align-items: center;
+}
+
+/* Стили для сообщений от текущего пользователя (правая сторона) */
+.current-user {
+    background-color: blue;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    max-width: 300px;
+    word-wrap: break-word;
+    /* Выравнивание вправо */
+    /* Дополнительный отступ справа */
+    margin: 10px 10px 10px auto;
+}
+
+/* Стили для сообщений от другого пользователя (левая сторона) */
+.other-user {
+    background-color: grey;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    max-width: 300px;
+    word-wrap: break-word;
+    /* Выравнивание влево */
+    /* Дополнительный отступ слева */
+    margin: 10px auto 10px 10px;
+}
+
+#settingsButton {
+    width: 33.8%;
+    height: 45px;
+    position: fixed;
+    bottom: 0;
+    background-color: #1d3642;
+    border: none;
+}
+
+#settingsButton:hover {
+    background-color: #3d5c64;
+}
+
+.modal {
+    opacity: 0;
+    visibility: hidden;
+
+    width: 100%;
+    max-width: 500px;
+
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    box-shadow: 0 3px 10px -.5px rgba(0, 0, 0, .2);
+    text-align: center;
+    padding: 30px;
+    border-radius: 3px;
+    background-color: #fff;
+    transition: 0.3s all;
+}
+
+.modal.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.user-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+
+.avatar {
+    width: 60px;
+    padding-right: 20px;
+}
+
+#closeModalBtn {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    border: none;
+    cursor: pointer;
+    background-color: white;
+}
+
+.start-dialog {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    font-style: italic;
+    color: white;
+}
+
+.fullname-chat {
+    font-size: 20px;
+    align-items: center;
+    background-color: #3d5c64;
+    padding: 10px;
+    color: white;
+    font-weight: bold;
+    font-style: italic;
+    text-align: center;
+}
+
+.avatarSettings, .firstNameSettings, .lastNameSettings, .userNameSettings, .passwordSettings {
+    max-width: 500px;
+    height: 30px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    /*justify-content: space-evenly;*/
+    /*background-color: #1c1321;*/
+}
+
+.avatarSettings{
+    height: 60px;
+}
+
+.settingsAvatar, .firstName, .lastName, .userName, .password {
+    position: absolute;
+    right: 60px;
+}
+
+.firstName, .lastName, .userName, .password {
+    max-width: 150px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.editButton {
+    cursor: pointer;
+    position: absolute;
+    right: 10px;
+}
+
+.editInput {
+    border: 1px solid #000000;
+    margin-right: 5px;
+}
+
+.settingsLabel {
+    padding-right: 10px;
+}
+
+.search-user-field{
+    /*position: absolute;*/
+    /*top:28px;*/
+    /*width: 100%;*/
+}
+
+.search-input{
+    padding-left: 10px;
+    resize: none;
+    width: 97.3%;
+    background-color: #939494;
+    outline: none;
+    color: white;
+}
+
+.search-input::placeholder {
+
+    color: white;
+}
+
+.search-input::
